@@ -26,6 +26,7 @@ jobs:
               run: |
                 mvn clean
                 mvn -B package --file pom.xml
+                
             - name: get current date
               id: date 
               run: echo "DATE=$(date +'%Y-%m-%d_%H-%M-%S')" >> $GITHUB_ENV
@@ -49,5 +50,5 @@ jobs:
                 context: .
                 dockerfile: Dockerfile
                 push: true
-                tags: ${{ secrets.DOCKER_HUB_USERNAME }}/Test_CI_CD_github:today #${date-'%Y-%m-%d%H-%M-%S'}
+                tags: ${{ secrets.DOCKER_HUB_USERNAME }}/Test_CI_CD_github:${{ env.DATE }}  #${date-'%Y-%m-%d%H-%M-%S'}
 
